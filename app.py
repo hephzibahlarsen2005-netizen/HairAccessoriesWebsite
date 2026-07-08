@@ -1,4 +1,5 @@
 from flask import Flask, send_from_directory
+import os
 
 app = Flask(__name__, static_folder=".", static_url_path="")
 
@@ -18,7 +19,17 @@ def about():
 def contact():
     return send_from_directory(".", "contact.html")
 
-import os
+@app.route("/login")
+def login():
+    return send_from_directory(".", "login.html")
+
+@app.route("/cart")
+def cart():
+    return send_from_directory(".", "cart.html")
+
+@app.route("/checkout")
+def checkout():
+    return send_from_directory(".", "checkout.html")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
